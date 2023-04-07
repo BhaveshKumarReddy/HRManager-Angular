@@ -1,0 +1,22 @@
+<div class="main-box">
+    <div class="left-box text-center">
+        <h1 style="color: #d9d9d9; font-style: italic; font-weight: bold" class="display-3">
+            Human Resource
+            <br /><span style="color: #d9d9d9; font-weight: bold" class="display-4">
+                Manager!
+                <i class="fas fa-dragon dragon"></i>
+            </span>
+        </h1>
+        <div class="box-for-span">
+            <i class='fas fa-map-marker-alt' style='font-size: 20px; color: #d9d9d9'></i>
+                <span class="locations-span" *ngFor="let locations of allLocations">
+                    {{locations.locationName}}
+                </span>
+        </div>
+    </div>
+    <div *ngIf="local.getItem('token')=='loggedin'" style="border-top:2px solid white" class="right-box text-center">
+        <h4 style="color:white;" class="h4-rightBox">Manage</h4>
+        <a routerLink="/employee/display" class="a-rightBox" >Employees in {{current_location}}</a>
+        <a routerLink="/Edit" class="a-rightBox" >Edit Account</a>
+    </div>
+</div>

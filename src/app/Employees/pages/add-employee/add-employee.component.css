@@ -1,0 +1,14 @@
+.main-add {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+}
+
+.box-add {
+    margin: 0px;
+    background-color: #ebebeb;
+    padding: 30px;
+    border-radius: 7px;
+}

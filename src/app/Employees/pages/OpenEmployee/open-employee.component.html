@@ -1,0 +1,120 @@
+<div>
+    <a class="back-link" style="color:#ededed" routerLink="/employee/display">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+
+    <hr style="background-color:#ededed" />
+
+    <h4 style="color:#ededed">Employee Information - <span> ID: {{employeeID}}</span></h4>
+    <br/>
+    <dl class="row">
+        <dt style="color:#ededed" class="col-sm-2">
+            Name
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            {{currentEmployee.employeeName}}
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Date Of Joining
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            {{currentEmployee.employeeDoj | date}}
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Role
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            {{currentEmployee.employeeRole}}
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Points
+        </dt>
+        <dd style="background-color: #f5f5f5;" class="col-sm-10">
+            {{currentEmployee.employeePoints}}
+        </dd>
+        <dt style="color:#ededed" class="col-sm-2">
+            Salary in &#8377;
+        </dt>
+        <dd style="background-color: #f5f5f5" class="col-sm-10">
+            <div style="display:flex;justify-content:space-between;flex-direction:row;width:100%;align-items:center">
+                {{currentEmployee.employeeSalary}}
+                <span *ngIf="eligibleForIncrement" style="color: #525252; font-weight: bold; background-color: white; padding: 5px 10px 5px 10px; border-radius: 5px; border-style: solid; border-color: chartreuse">Eligible for Increment</span>
+            </div>
+        </dd>
+    </dl>
+</div>
+
+<hr />
+
+<div id="exTab1" class="container">
+
+    <ul style="margin-bottom:20px" class="nav nav-pills">
+        <li *ngIf="tabID!=0" style="margin-right: 40px;"  (click)="tabID=0" class="txt-active-none-tab li-tab-button">
+            <a style="color:black" data-toggle="tab">Close Tab</a>
+        </li>
+        <li (click)="tabID=1" class="txt-active li-tab-button" [class.focus-tab]="tabID==1">
+            Edit Info &#9432;
+        </li>
+        <li (click)="tabID=2" *ngIf="eligibleForIncrement" class="txt-active li-tab-button" [class.focus-tab]="tabID==2">
+            Increment Salary
+        </li>
+        <li (click)="tabID=3" class="txt-danger li-tab-button" [class.focus-tab]="tabID==3">
+            Fire Employee
+        </li>
+        <li (click)="tabID=4" class="txt-danger li-tab-button" [class.focus-tab]="tabID==4">
+            Transfer
+        </li>
+    </ul>
+
+    <hr style="background-color: #ededed;" />
+
+    <div [ngSwitch]="tabID" style="margin-bottom:10%" class="tab-content clearfix">
+        <div *ngSwitchCase="0">
+        </div>
+        <div *ngSwitchCase="1">
+            <app-edit-employee (closetab)="tabID=$event" [employee]="currentEmployee" [employeeLocationId]="currentEmployee.locationId"></app-edit-employee>
+        </div>
+        <div *ngSwitchCase="3">
+            <app-fire-employee [employee]="currentEmployee"></app-fire-employee>
+        </div>
+        <div *ngSwitchCase="4">
+            <app-transfer-employee [employee]="currentEmployee"></app-transfer-employee>
+        </div>
+        <div *ngSwitchCase="2">
+            <app-increment-salary (closetab)="tabID=$event" [employee]="currentEmployee"></app-increment-salary>
+        </div>
+    </div>
+
+</div>
+
+<!-- <div id="exTab1" class="container">
+    <ul style="margin-bottom:20px" class="nav nav-pills">
+        <li class="txt-active-none-tab li-tab-button">
+            <a style="color:black" href="#none" data-toggle="tab">Close Tab</a>
+        </li>
+        <li class="txt-active li-tab-button">
+            <a href="#Edit" data-toggle="tab">Edit Info &#9432;</a>
+        </li>
+        <li *ngIf="eligibleForIncrement" class="txt-active li-tab-button">
+                <a href="#Increment" data-toggle="tab" style="">Increment Salary</a>
+        </li>
+        <li class="txt-danger li-tab-button">
+            <a href="#Fire" data-toggle="tab">Fire Employee</a>
+        </li>
+        <li class="txt-danger li-tab-button">
+            <a href="/employee/open/11/#Transfer" data-toggle="tab">Transfer</a>
+        </li>
+    </ul>
+
+    <div style="margin-bottom:10%" class="tab-content clearfix">
+        <div class="tab-pane active" id="none"></div>
+        <div class="tab-pane" id="Edit">
+        </div>
+        <div class="tab-pane" id="Fire">
+        </div>
+        <div class="tab-pane" id="Transfer">
+        </div>
+        <div class="tab-pane" id="Increment">
+        </div>
+    </div>
+</div> -->

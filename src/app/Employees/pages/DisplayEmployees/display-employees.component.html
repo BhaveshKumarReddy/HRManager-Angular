@@ -1,0 +1,67 @@
+<div>
+    <a class="back-link" style="color:#ededed" routerLink="/Home">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+
+<hr style="background-color: #ededed;" />
+ 
+<h4 style="color:#ededed">Employees in {{currentLocation}}</h4>
+
+<div class="addEmployee-pipe">
+    <div>
+        <a routerLink="/employee/add" style="margin:3px;border:2px solid #f6f6f6;padding:5px;border-radius:4px;color:rgb(97, 153, 209)" >+ Employee</a>
+    </div>
+    <div class="radios-input">
+        <div>
+            <input class="inputFilter" [(ngModel)]="searchValue" placeholder="Search by " />
+        </div>
+        <div class="radios">
+            <input checked class="radioFilter" [(ngModel)]="selectRadio" name="radioFilter" type="radio" value="" /> 
+            <label> Name</label>
+            <input class="radioFilter" [(ngModel)]="selectRadio" name="radioFilter" type="radio" value="role" />
+            <label> Role</label>
+        </div>
+    </div>
+</div>
+
+<table *ngIf="allEmployees.length>0; else noEmployees" style="margin-top: 35px;background-color:#ededed;border-radius:7px;overflow: hidden;" class="table">
+    <thead style="background-color:rgb(0, 71, 133);">
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Role
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody class="tbody-table">
+        
+            <tr *ngFor="let employee of allEmployees | FilterByX:selectRadio:searchValue" class="tr-table" style="border-bottom: 2px solid black;">
+                <td>
+                    {{employee.employeeId}}
+                </td>
+                <td>
+                    {{employee.employeeName}}
+                </td>
+                <td>
+                    {{employee.employeeRole}}
+                </td>
+                <td>
+                    <a (click)="openByID(employee.employeeId)"><span class="open-employee">Open &#9432;</span></a>
+                </td>
+            </tr>
+
+    </tbody>
+</table>
+
+<ng-template #noEmployees>
+    <h2 style="color:white;margin:25px">There are no employees!</h2>
+</ng-template>
+    

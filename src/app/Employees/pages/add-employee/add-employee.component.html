@@ -1,0 +1,78 @@
+<div>
+    <a class="back-link" style="color:#ededed" routerLink="/employee">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+
+<hr style="background-color:#ededed"/>
+<h4 style="color:#ededed">Add Employee</h4>
+ 
+<div style="margin-bottom:5%" class="row main-add">
+
+    <div class="col-md-4 box-add">
+
+        <form #addEmployeeForm="ngForm" (submit)="addEmployee(addEmployeeForm.value)">
+
+            <div class="text-danger"></div>
+
+            <div class="form-group">
+                <label class="control-label">Name</label>
+                <input #name="ngModel" name="employeeName" ngModel placeholder="Name" required minlength="2" maxlength="29"
+                       type="text" class="form-control" autofocus="true" style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="name.touched && name.invalid" class="text-danger">*</span>
+                <span *ngIf="name.touched && (name.errors?.['minlength'])" class="text-danger">Name must be at least 2 and maximum of 29 characters<br/></span>
+            </div>
+
+            <div class="form-group">
+                <!-- [max]="currentDate" (keydown)="false"-->
+                <label class="control-label">Date Of Joining</label>
+                <input #doj="ngModel" name="employeeDoj" ngModel placeholder="Date Of Joining"
+                       required [max]="currentDate" (keydown)="false" type="date" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="doj.touched && doj.invalid" class="text-danger">*</span>
+                <span *ngIf="doj.touched && (doj.errors?.['min']||doj.errors?.['max'])" class="text-danger">Date cannot be in the future!<br/></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Role</label>
+                <input #role="ngModel" name="employeeRole" ngModel placeholder="Role" required type="text" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="role.touched && role.invalid" class="text-danger">*</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Salary in &#8377; (CTC)</label>
+                <input #salary="ngModel" name="employeeSalary" ngModel placeholder="Salary in &#8377; (CTC)"
+                       type="number" required min="0" max="10000000" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="salary.touched && salary.invalid" class="text-danger">*</span>
+                <span *ngIf="salary.touched && (salary.errors?.['min']||salary.errors?.['max'])" class="text-danger">Choose CTC below 1CR and CTC can't be negative<br/></span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Points</label>
+                <input #points="ngModel" name="employeePoints" ngModel placeholder="Points"
+                       type="number" required min="0" max="10000000" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="points.touched && points.invalid" class="text-danger">*</span>
+                <span *ngIf="points.touched && (points.errors?.['min']||points.errors?.['max'])" class="text-danger">Can't be negative<br/></span>
+            </div>
+            
+            <div class="form-group">
+                <label class="control-label">Appraisal Date</label>
+                <input #appraisaldate="ngModel" name="employeeAppraisalDate" ngModel placeholder="Appraisal Date"
+                       required [min]="currentDate" type="date" (keydown)="false" class="form-control" style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="appraisaldate.touched && appraisaldate.invalid" class="text-danger">*</span>
+                <span *ngIf="appraisaldate.touched && (appraisaldate.errors?.['min']||appraisaldate.errors?.['max'])" class="text-danger">Date cannot be in the past!<br/></span>
+            </div>
+
+            <div  class="form-group">
+                <label class="control-label">Location</label>
+                <input [value]="currentLocation.locationName" disabled="true" #locName="ngModel" name="locationId" ngModel required class="form-control" style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="locName.touched && name.invalid" class="text-danger">*</span>
+            </div>
+
+            <div style="display:flex;justify-content:center" class="form-group">
+                <input [disabled]="!addEmployeeForm.valid" type="submit" value="Add Employee" class="btn btn-dark" />
+            </div>
+
+        </form>
+
+    </div>
+</div>

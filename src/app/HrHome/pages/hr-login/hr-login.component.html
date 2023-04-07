@@ -1,0 +1,79 @@
+<div>
+    <a class="back-link" style="color:#ededed" routerLink="/Home">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<hr />
+
+<h3 style="color:#ededed; margin-bottom: 20px;">Login</h3>
+
+<div class="row main-login">
+    <div class="col-md-4 box-login">
+<form id="loginForm-id" [formGroup]="loginForm" (submit)="Login()">
+    <div class="form-group">
+        <label class="control-label">Email </label>
+        <input style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" placeholder=".....xxx@gmail.com" type="email" 
+            formControlName="email"  name="hrEmail" class="form-control" autofocus="true" (keyup)="emailNotFound = false"/>
+        <span *ngIf="email?.errors?.['required'] && email?.touched" class="text-danger">*</span>
+        <span *ngIf="email?.touched && (email?.errors?.['minlength'] || email?.errors?.['maxlength'])" class="text-danger">Your email must be at least 5 and maximum of 29 characters<br/></span>
+        <span *ngIf="emailNotFound && email?.touched" class="text-danger">Email not found!</span>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label">Password</label>
+        <input style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" placeholder="******" type="password"
+            formControlName="password" name="hrPassword" class="form-control" (keyup)="pwdError = false"/>
+        <span *ngIf="password?.invalid && password?.touched" class="text-danger">*</span>
+        <span *ngIf="password?.touched && (password?.errors?.['minlength'] || password?.errors?.['maxlength'])" class="text-danger">Your password must be at least 6 and maximum of 29 characters<br/></span>
+        <span *ngIf="pwdError" class="text-danger">Incorrect password!</span>
+    </div>
+
+    <div style="display:flex;justify-content:center;" class="form-group">
+        <input [disabled]="!loginForm.valid || pwdError || emailNotFound" type="submit" value="Login" class="btn btn-dark" />
+    </div>
+
+</form>
+
+</div>
+</div>
+
+<!-- <div>
+    <a class="back-link" style="color:#ededed" routerLink="/Home">
+        <i class="fa fa-arrow-left"></i> Back
+    </a>
+</div>
+<hr />
+
+<h3 style="color:#ededed; margin-bottom: 20px;">Login</h3>
+
+<div class="row main-login">
+    <div class="col-md-4 box-login">
+
+        <form id="loginForm-id" #loginForm="ngForm" (submit)="Login(loginForm.value)">
+            <div class="text-danger"></div>
+
+            <div class="form-group">
+                <label class="control-label">Email</label>
+                <input style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" placeholder=".....xxx@gmail.com" type="email" 
+                       name="hrEmail" ngModel class="form-control" #hrEmail="ngModel" email required minlength="5" maxlength="29" autofocus="true" (keyup)="emailNotFound = false" />
+                <span *ngIf="hrEmail.touched && hrEmail.invalid" class="text-danger">*</span>
+                <span *ngIf="hrEmail.touched && (hrEmail.errors?.['minlength'])" class="text-danger">Your email must be at least 5 and maximum of 29 characters<br/></span>
+                <span *ngIf="emailNotFound && hrEmail.touched" class="text-danger">Email not found!</span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label">Password</label>
+                <input style="border-radius: 5px; background-color: #ffffff; border: none; border-bottom: 2px solid black" placeholder="******" type="password"
+                       name="hrPassword" ngModel class="form-control" #hrPassword="ngModel" required minlength="6" maxlength="29" (keyup)="pwdError = false"/>
+                <span *ngIf="hrPassword.touched && hrPassword.invalid" class="text-danger">*</span>
+                <span *ngIf="hrPassword.touched && hrPassword.errors?.['minlength']" class="text-danger">Your password must be at least 6 and maximum of 29 characters<br/></span>
+                <span *ngIf="pwdError" class="text-danger">Incorrect password!</span>
+            </div>
+
+            <div style="display:flex;justify-content:center;" class="form-group">
+                <input [disabled]="!loginForm.valid || (pwdError || emailNotFound)" type="submit" value="Login" class="btn btn-dark" />
+            </div>
+
+        </form>
+    </div>
+</div> -->

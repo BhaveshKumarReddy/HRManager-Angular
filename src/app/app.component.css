@@ -1,0 +1,26 @@
+.main-container{
+    margin: 0px;
+    padding: 0px;
+}
+.nav-box{
+    background-image: linear-gradient(to right bottom, #051937, #0f2241, #192b4a, #233554, #2c3f5e);
+}
+
+.footer {
+    background-image: linear-gradient(to right bottom, #051937, #0f2241, #192b4a, #233554, #2c3f5e);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    line-height: 60px; /* Vertically center the text there */
+  }
+    
+@keyframes mymove {
+    50% {transform: rotate(360deg);}
+}
+
+.nav-link:hover{
+    background-color: #69738379;
+    border: 1px solid white;
+    border-radius: 5px;
+}

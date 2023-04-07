@@ -1,0 +1,64 @@
+<h5 style="color:#ededed">Edit Information</h5>
+<hr style="background-color:#ededed"/>
+<div class="row">
+    <div class="col-md-4">
+<!--  editForm.value -->
+        <form #editForm="ngForm" (submit)="editEmployee()">
+
+            <div class="text-danger"></div>
+
+            <div class="form-group">
+                <label style="color: antiquewhite;" class="control-label">Name</label>
+                <input [(ngModel)]="currentEmployee.employeeName" #name="ngModel" name="employeeName" ngModel placeholder="Name" required minlength="2" maxlength="29"
+                       type="text" class="form-control" autofocus="true" style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="name.touched && name.invalid" class="text-danger">*</span>
+                <span *ngIf="name.touched && (name.errors?.['minlength'])" class="text-danger">Name must be at least 2 and maximum of 29 characters<br/></span>
+            </div>
+
+            <div class="form-group">
+                <label style="color: antiquewhite;" class="control-label">Date Of Joining</label>
+                <input [(ngModel)]="currentEmployee.employeeDoj" #doj="ngModel" name="employeeDoj" ngModel placeholder="Date Of Joining"
+                       required [max]="currentDate" (keydown)="false" type="date" class="form-control" style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="doj.touched && doj.invalid" class="text-danger">*</span>
+                <span *ngIf="doj.touched && (doj.errors?.['min']||doj.errors?.['max'])" class="text-danger">Date cannot be in the future!<br/></span>
+            </div>
+
+            <div class="form-group">
+                <label style="color: antiquewhite;" class="control-label">Role</label>
+                <input [(ngModel)]="currentEmployee.employeeRole" #role="ngModel" name="employeeRole" ngModel placeholder="Role" required type="text" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="role.touched && role.invalid" class="text-danger">*</span>
+            </div>
+
+            <div class="form-group">
+                <label style="color: antiquewhite;" class="control-label">Salary in &#8377; (CTC)</label>
+                <input [(ngModel)]="currentEmployee.employeeSalary" #salary="ngModel" name="employeeSalary" ngModel placeholder="Salary in &#8377; (CTC)"
+                       type="number" required min="0" max="10000000" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="salary.touched && salary.invalid" class="text-danger">*</span>
+                <span *ngIf="salary.touched && (salary.errors?.['min']||salary.errors?.['max'])" class="text-danger">Choose CTC below 1CR and CTC cant't be negative<br/></span>
+            </div>
+
+            <div class="form-group">
+                <label style="color: antiquewhite;" class="control-label">Points</label>
+                <input [(ngModel)]="currentEmployee.employeePoints" #points="ngModel" name="employeePoints" ngModel placeholder="Points"
+                       type="number" required min="0" max="10000000" class="form-control"  style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="points.touched && points.invalid" class="text-danger">*</span>
+                <span *ngIf="points.touched && (points.errors?.['min']||points.errors?.['max'])" class="text-danger">Can't be negative<br/></span>
+            </div>
+            
+            <div class="form-group">
+                <label style="color: antiquewhite;" class="control-label">Appraisal Date</label>
+                <input [(ngModel)]="currentEmployee.employeeAppraisalDate" #appraisaldate="ngModel" name="employeeAppraisalDate" ngModel placeholder="Appraisal Date"
+                       required [min]="currentDate" type="date" (keydown)="false" class="form-control" style="border-radius:5px;background-color:#ffffff;border:none;border-bottom:2px solid black"/>
+                <span *ngIf="appraisaldate.touched && appraisaldate.invalid" class="text-danger">*</span>
+                <span *ngIf="appraisaldate.touched && (appraisaldate.errors?.['min']||appraisaldate.errors?.['max'])" class="text-danger">Date cannot be in the future!<br/></span>
+            </div>
+
+            <div class="form-group">
+                <input [disabled]="editForm.invalid" type="submit" value="Save Changes" class="btn btn-primary" />
+            </div>
+
+        </form>
+        
+    </div>
+</div>
+

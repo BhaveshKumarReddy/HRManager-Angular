@@ -1,0 +1,66 @@
+.addEmployee-pipe{
+    width: 100%;
+    margin:25px 0px 0px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.addEmployee-pipe .radios-input{
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    margin-right: 50px;
+}
+
+.radioFilter{
+    margin-left: 10px;
+    margin-right: 4px;
+    height: 15px;
+    width: 15px;
+    accent-color: #7c86a0;
+}
+
+.inputFilter{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-right: 10px;
+    border-radius: 4px;
+    color: rgb(0, 44, 88);
+    background-color: rgb(239, 239, 239);
+    padding: 3px;
+}
+
+.radios label{
+    color: rgb(243, 243, 243);
+}
+
+th{
+    color: rgb(231, 231, 231);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tr-table:hover {
+    background-color: lightgray;
+}
+
+.tr-table:hover td{
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(6, 20, 82);
+}
+
+.open-employee{
+    color: rgb(6, 20, 82);
+    font-weight:bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.open-employee:hover{
+    cursor: pointer;
+}
+
+/* .table{
+    display: block;
+    overflow-y: scroll;
+} */
